@@ -1,0 +1,6 @@
+[submodule "software/drivers/servo/src/servo/src/lib/I2C"]
+	path = software/drivers/servo/src/servo/src/lib/I2C
+	url = https://github.com/TeraHz/I2C
+[submodule "software/drivers/servo/src/servo/src/lib/PCA9685"]
+	path = software/drivers/servo/src/servo/src/lib/PCA9685
+	url = https://github.com/TeraHz/PCA9685
