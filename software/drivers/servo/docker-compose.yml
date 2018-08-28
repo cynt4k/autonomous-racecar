@@ -1,0 +1,13 @@
+servo:
+  image: lab/servo:latest
+  container_name: servo
+  hostname: servo
+  ports:
+  - 1234:1234
+  environment:
+  - ROS_HOSTNAME=servo
+  - ROS_MASTER_URI=http://core:11311
+  devices:
+  - /dev/i2c-1:/dev/i2c-1
+  net: ros
+  command: roslaunch servo servo.launch bus_id:=1 address:=0x40  servo_port:=1 esc_port:=0
