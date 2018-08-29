@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  joystick:
+    build: .
+    image: lab/joystick:latest
+    container_name: joystick
+    environment:
+    - ROS_HOSTNAME=joystick
+    - ROS_MASTER_URI=http://core:11311
+    devices:
+    - /dev/input/js0
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: rosrun joy joy_node joy_node:=/dev/input/js0
+
+networks:
+  ros:
+    external: true
