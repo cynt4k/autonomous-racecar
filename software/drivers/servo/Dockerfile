@@ -1,4 +1,4 @@
-FROM lab/ros:base
+FROM lab/ros:dev
 
 ENV CATKIN_WS=/root/servo
 RUN mkdir -p $CATKIN_WS/src
@@ -24,7 +24,7 @@ RUN apt-get update && rosdep install -y --from-paths . --ignore-src --rosdistro 
 
 WORKDIR $CATKIN_WS
 RUN source /ros_entrypoint.sh && \
-    catkin build --no-status
+    catkin build --no-status --cmake-args -DCMAKE_BUILD_TYPE=Debug 
 
 RUN sed -i 's/# PLACEHOLDERSOURCE/source $CATKIN_WS\/devel\/setup.bash/g' /ros_entrypoint.sh
 

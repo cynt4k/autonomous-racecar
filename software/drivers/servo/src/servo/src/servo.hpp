@@ -1,6 +1,7 @@
 #ifndef SERVO_HPP_
 #define SERVO_HPP_
 
+#include <cmath>
 
 #include <ros/ros.h>
 #include <servo_msgs/ServoState.h>
@@ -8,17 +9,29 @@
 
 #include "PCA9685.h"
 
-#define SERVO_MIN_PULSE 150
-#define SERVO_MAX_PULSE 600
-#define SERVO_PULSE_RANGE 4096
+#define SERVO_MAX_RIGHT 256
+#define SERVO_PWM_NEUTRAL 384
+#define SERVO_MAX_LEFT 450
+
+#define SERVO_MIN_PULSE SERVO_MAX_RIGHT
+#define SERVO_MAX_PULSE SERVO_MAX_LEFT
+#define SERVO_LEFT_ANGLE -1
+#define SERVO_NEUTRAL 0
+#define SERVO_RIGHT_ANGLE 1
 
 #define ESC_THROTTLE_FULL_REVERSE 204
 #define ESC_THROTTLE_NEUTRAL 307
 #define ESC_THROTTLE_FULL_FORWARD 409
+#define ESC_MIN_THROTTLE -1
+#define ESC_NEUTRAL 0
+#define ESC_MAX_THROTTLE 1
 
+//! Main class that for the Servo driver
 class Servo {
 public:
     Servo();
+
+    virtual ~Servo();
 
 private:
     ros::NodeHandle node;
@@ -34,6 +47,8 @@ private:
     void chatterServoState(const servo_msgs::ServoStateConstPtr &servo_state);
     void chatterDirectionPwm(const servo_msgs::PwmStateConstPtr &pwm_state);
     void chatterEscPwm(const servo_msgs::PwmStateConstPtr &pwm_state);
+
+    int mapRange(float x, int x_min, int x_max, int y_min, int y_max);
 
     void shutdown();
 };

@@ -54,6 +54,7 @@ void PCA9685::reset() {
 		i2c->write_byte(MODE2, 0x04); //totem pole
 
 }
+
 //! Set the frequency of PWM
 /*!
  \param freq desired frequency. 40Hz to 1000Hz using internal 25MHz oscillator.
@@ -65,6 +66,20 @@ void PCA9685::setPWMFreq(int freq) {
 		i2c->write_byte(PRE_SCALE, prescale_val); // multiplyer for PWM frequency
 		i2c->write_byte(MODE1, 0x80); //restart
 		i2c->write_byte(MODE2, 0x04); //totem pole (default)
+}
+
+
+//! PWM all channels
+/*!
+ *
+ * \param on_value 0-4095 value to turn on the pulse
+ * \param off_value 0-4095 value to turn off the pulse
+ */
+void PCA9685::setAllPWM(int on_value, int off_value) {
+	i2c->write_byte(ALLLED_ON_L, on_value & 0xFF);
+	i2c->write_byte(ALLLED_ON_H, on_value >> 8);
+	i2c->write_byte(ALLLED_OFF_L, off_value & 0xFF);
+	i2c->write_byte(ALLLED_OFF_H, off_value >> 8);
 }
 
 //! PWM a single channel
