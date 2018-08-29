@@ -4,7 +4,12 @@
     <arg name="esc_port" default="1"/>
     <arg name="servo_port" default="0"/>
 
-    <node name="servo" pkg="servo" type="servo_run" launch-prefix="gdbserver 0.0.0.0:1234" output="screen">
+    <arg name="debug" default="false"/>
+    <arg name="debug_port" default="1234"/>
+    <arg if="$(arg debug)" name="launch_prefix" value="gdbserver :$(arg debug_port)"/>
+    <arg unless="$(arg debug)" name="launch_prefix" value=""/>
+
+    <node name="servo" pkg="servo" type="servo_run" launch-prefix="$(arg launch_prefix)" output="screen">
         <param name="bus_id" value="$(arg bus_id)"/>
         <param name="address" value="$(arg address)"/>
         <param name="esc_port" value="$(arg esc_port)"/>

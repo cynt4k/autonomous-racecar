@@ -1,1 +1,1 @@
-int32 value
+float32 value
