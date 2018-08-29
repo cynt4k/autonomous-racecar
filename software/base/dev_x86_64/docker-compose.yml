@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  dev:
+    build: .
+    image: lab/ros:dev
+    container_name: ros-dev
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - "data:/root"
+      - "${HOME}/.Xauthority:/root/.Xauthority"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "../../:/data"
+    network_mode: "host"
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    command: tail -f /dev/null
+
+volumes:
+  data:
