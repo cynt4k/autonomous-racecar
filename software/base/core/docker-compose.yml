@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  core:
+    build: .
+    image: lab/ros:core
+    container_name: core
+    ports:
+    - "11311:11311"
+    environment:
+    - ROS_HOSTNAME=core
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    command: roscore
+
+networks:
+  ros:
+    external: true

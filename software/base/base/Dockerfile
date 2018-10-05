@@ -15,3 +15,5 @@ RUN echo Europe/Berlin > /etc/timezone && \
 # Install basic packages
 RUN apt-get update && apt-get -y install vim \
                                          less
+
+ADD scripts/ros_entrypoint.sh /ros_entrypoint.sh
