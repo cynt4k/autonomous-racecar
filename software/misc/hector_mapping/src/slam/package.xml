@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>hector_mapping</name>
+    <version>1.0.0</version>
+    <description>The hector mapping slam algorithmus</description>
+
+    <maintainer email="me@cynt4k.de">cynt4k</maintainer>
+
+    <license>TODO</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <build_depend>roslaunch</build_depend>
+    <build_depend>std_msgs</build_depend>
+    <run_depend>std_msgs</run_depend>
+    <run_depend>nav_msgs</run_depend>
+    <run_depend>hector_mapping</run_depend>
+
+</package>

@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  hector_mapping:
+    build: .
+    image: lab/hector_mapping:latest
+    container_name: hector_mapping
+    environment:
+    - ROS_HOSTNAME=hector_mapping
+    - ROS_MASTER_URI=http://core:11311
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch hector_mapping hector_mapping.launch
+
+networks:
+  ros:
+    external: true
