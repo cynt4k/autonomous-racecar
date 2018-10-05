@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  controller_servo:
+    build: .
+    image: lab/controller_servo:dev
+    container_name: controller_servo
+    ports:
+    - "1234:22"
+    environment:
+    - ROS_HOSTNAME=controller_servo
+    - ROS_MASTER_URI=http://core:11311
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: roslaunch servo servo.launch debug:=false bus_id:=1 address:=0x40 servo_port:=2 esc_port:=1
+
+networks:
+  ros:
+    external: true

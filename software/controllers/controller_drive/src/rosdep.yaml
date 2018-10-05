@@ -1,0 +1,4 @@
+pip-pydevd:
+    ubuntu:
+        pip:
+            packages: [pydevd]

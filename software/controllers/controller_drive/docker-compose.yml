@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  controller_servo:
+    build: .
+    image: lab/controller_servo:latest
+    container_name: controller_servo
+    environment:
+    - ROS_HOSTNAME=controller_servo
+    - ROS_MASTER_URI=http://core:11311
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch controller_servo controller.launch debug:=false
+
+networks:
+  ros:
+    external: true

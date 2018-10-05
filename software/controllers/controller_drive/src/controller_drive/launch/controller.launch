@@ -1,0 +1,13 @@
+<launch>
+    <arg name="topic_direction" default=""/>
+    <arg name="topic_esc" default=""/>
+    <arg name="topic_joystick" default=""/>
+    <arg name="name" default=""/>
+
+    <node name="controller_servo" pkg="controller_servo" type="controller" output="screen">
+        <param name="topic_direction" value="$(arg topic_direction)"/>
+        <param name="topic_esc" value="$(arg topic_esc)"/>
+        <param name="topic_joystick" value="$(arg topic_joystick)"/>
+        <param name="name" value="$(arg name)"/>
+    </node>
+</launch>

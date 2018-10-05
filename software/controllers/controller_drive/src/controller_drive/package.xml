@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+    <name>controller_servo</name>
+    <version>1.0.0</version>
+    <description>Python controller for the motors</description>
+
+    <maintainer email="me@cynt4k.de">Tobias Schneider</maintainer>
+
+    <author email="me@cynt4k.de">Tobias Schneider</author>
+
+    <license>TODO</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>roslaunch</build_depend>
+
+    <run_depend>rospy</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+    <run_depend>std_msgs</run_depend>
+    <run_depend>servo_msgs</run_depend>
+    <run_depend>pip-pydevd</run_depend>
+</package>

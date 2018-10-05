@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import rospy
+
+
+from controller_servo import joystick
+from controller_servo import config
+
+def init():
+    debug = rospy.get_param('~debug', config.DEBUG)
+
+    if debug:
+        import pydevd
+        ip = rospy.get_param('~debug_ip', )
+        pydevd.settrace('10.198.80.32', port=1234, stdoutToServer=True, stderrToServer=True)
+
+    direction_topic = rospy.get_param('~topic_direction', config.TOPIC_DEFAULT_DIRECTION)
+    esc_topic = rospy.get_param('~topic_esc', config.TOPIC_DEFAULT_ESC)
+    joystick_topic = rospy.get_param('~topic_joystick', config.TOPIC_DEFAULT_JOYSTICK)
+
+    rospy.init_node(rospy.get_param('~name', config.DEFAULT_NAME))
+
+    joystick.Joystick.init_subscribers(joystick_topic, direction_topic, esc_topic)
+    rospy.spin()
+
+
+
+if __name__ == '__main__':
+    try:
+        init()
+    except rospy.ROSInterruptException:
+        pass
