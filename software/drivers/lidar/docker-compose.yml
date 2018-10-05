@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  lidar:
+    build: .
+    image: lab/lidar:latest
+    container_name: lidar
+    environment:
+    - ROS_HOSTNAME=lidar
+    - ROS_MASTER_URI=http://core:11311
+    devices:
+    - /dev/ttyUSB0:/dev/ttyUSB0
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch rplidar_ros lidar.launch rplidarNode:=lidar
+
+networks:
+  ros:
+    external: true
