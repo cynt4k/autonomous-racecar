@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  imu:
+    build: .
+    image: lab/imu:latest
+    container_name: imu
+    environment:
+    - ROS_HOSTNAME=imu
+    - ROS_MASTER_URI=http://core:11311
+    devices:
+    - "/dev/ttyACM0:/dev/ttyUSB0"
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch razor_imu_9dof imu.launch
+
+networks:
+  ros:
+    external: true
