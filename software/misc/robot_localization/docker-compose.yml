@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  localization:
+    build: .
+    image: lab/localization:latest
+    container_name: localization
+    environment:
+    - ROS_HOSTNAME=localization
+    - ROS_MASTER_URI=http://core:11311
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch localization localization.launch
+
+networks:
+  ros:
+    external: true
