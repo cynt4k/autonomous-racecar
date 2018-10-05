@@ -107,11 +107,11 @@ void Servo::chatterEscPwm(const servo_msgs::PwmStateConstPtr &pwm_state) {
     if (last_direction >= 0 && pwm_state->value < 0) {
         //TODO: Parse for IMU to detect stopping
         servo->setPWM(esc_port, 0, ESC_THROTTLE_NEUTRAL);
-        sleep(2.5);
+        sleep(0.05);
 
         // Hack to get into reverse mode
         servo->setPWM(esc_port, 0, value);
-        sleep(0.2);
+        sleep(0.05);
         servo->setPWM(esc_port, 0, ESC_THROTTLE_NEUTRAL);
     }
 

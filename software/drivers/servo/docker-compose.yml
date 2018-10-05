@@ -2,13 +2,13 @@ version: '3.1'
 
 services:
   servo:
-    image: lab/servo:dev
+    build: .
+    image: lab/servo:latest
+    container_name: servo
     environment:
     - DISPLAY=$DISPLAY
     - ROS_HOSTNAME=servo
     - ROS_MASTER_URI=http://core:11311
-    ports:
-    - 1234:1234
     devices:
     - /dev/i2c-1:/dev/i2c-1
     volumes:
@@ -16,11 +16,10 @@ services:
     - "/tmp/.X11-unix:/tmp/.X11-unix"
     cap_add:
     - SYS_PTRACE
-    privileged: true
     networks:
     - ros
     #command: tail -f /dev/null
-    command: roslaunch servo servo.launch debug:=true bus_id:=1 address:=0x40 servo_port:=2 esc_port:=1
+    command: roslaunch servo servo.launch debug:=false bus_id:=1 address:=0x40 servo_port:=2 esc_port:=1
 
 networks:
   ros:

@@ -1,4 +1,4 @@
-FROM lab/ros:dev
+FROM lab/ros:base
 
 ENV CATKIN_WS=/root/servo
 RUN mkdir -p $CATKIN_WS/src
