@@ -1,0 +1,4 @@
+<launch>
+  <arg name="scan_topic" default="scan"/>
+  <node pkg="gmapping" type="slam_gmapping" name="slam" args="$(arg scan_topic)" output="screen"/>
+</launch>

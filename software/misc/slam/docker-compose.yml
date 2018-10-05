@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  slam:
+    build: .
+    image: lab/slam:latest
+    container_name: slam
+    environment:
+    - ROS_HOSTNAME=slam
+    - ROS_MASTER_URI=http://core:11311
+    cap_add:
+    - SYS_PTRACE
+    networks:
+    - ros
+    #command: tail -f /dev/null
+    command: roslaunch slam slam.launch
+
+networks:
+  ros:
+    external: true
